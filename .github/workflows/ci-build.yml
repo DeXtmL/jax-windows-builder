@@ -59,6 +59,7 @@ jobs:
       run: |
         copy .bazelrc "$env:GITHUB_WORKSPACE/jax/"
         cd "$env:GITHUB_WORKSPACE/jax"
+        dir
         ../bazel-build-cpu.ps1 -bazel_path $env:BAZEL_PATH
         az storage blob upload-batch --overwrite -d unstable -s "$env:GITHUB_WORKSPACE/jax/bazel-dist" --pattern '*.whl'
         rm -Recurse -Force "$env:GITHUB_WORKSPACE/jax/bazel-dist"
@@ -76,6 +77,7 @@ jobs:
       run: |
         copy .bazelrc "$env:GITHUB_WORKSPACE/jax/"
         cd "$env:GITHUB_WORKSPACE/jax"
+        dir
         ../bazel-build-cpu.ps1 -bazel_path $env:BAZEL_PATH
         az storage blob upload-batch --overwrite -d unstable -s "$env:GITHUB_WORKSPACE/jax/bazel-dist" --pattern '*.whl'
         rm -Recurse -Force "$env:GITHUB_WORKSPACE/jax/bazel-dist"
@@ -173,6 +175,7 @@ jobs:
     - name: py310 build whl and upload
       run: |
         cd "$env:GITHUB_WORKSPACE/jax"
+        dir
         ../bazel-build-cuda.ps1 -bazel_path $env:BAZEL_PATH -cuda_version '11.1' -cuda_prefix 'D:/CUDA'
         az storage blob upload-batch --overwrite -d unstable -s "$env:GITHUB_WORKSPACE/jax/bazel-dist" --pattern '*.whl'
         rm -Recurse -Force "$env:GITHUB_WORKSPACE/jax/bazel-dist"
@@ -189,6 +192,7 @@ jobs:
     - name: py39 build whl and upload
       run: |
         cd "$env:GITHUB_WORKSPACE/jax"
+        dir
         ../bazel-build-cuda.ps1 -bazel_path $env:BAZEL_PATH -cuda_version '11.1' -cuda_prefix 'D:/CUDA'
         az storage blob upload-batch --overwrite -d unstable -s "$env:GITHUB_WORKSPACE/jax/bazel-dist" --pattern '*.whl'
         rm -Recurse -Force "$env:GITHUB_WORKSPACE/jax/bazel-dist"

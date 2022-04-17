@@ -57,6 +57,7 @@ jobs:
       run: pip install -r "$env:GITHUB_WORKSPACE/build-requirements-py310.txt"
     - name: py310 build whl and upload
       run: |
+        copy .bazelrc "$env:GITHUB_WORKSPACE/jax/"
         cd "$env:GITHUB_WORKSPACE/jax"
         ../bazel-build-cpu.ps1 -bazel_path $env:BAZEL_PATH
         az storage blob upload-batch --overwrite -d unstable -s "$env:GITHUB_WORKSPACE/jax/bazel-dist" --pattern '*.whl'
@@ -73,6 +74,7 @@ jobs:
       run: pip install -r "$env:GITHUB_WORKSPACE/build-requirements.txt"
     - name: py39 build whl and upload
       run: |
+        copy .bazelrc "$env:GITHUB_WORKSPACE/jax/"
         cd "$env:GITHUB_WORKSPACE/jax"
         ../bazel-build-cpu.ps1 -bazel_path $env:BAZEL_PATH
         az storage blob upload-batch --overwrite -d unstable -s "$env:GITHUB_WORKSPACE/jax/bazel-dist" --pattern '*.whl'

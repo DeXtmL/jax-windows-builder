@@ -42,7 +42,8 @@ try {
     # vcpath, workaround it.
     $env:BAZEL_VC = $env:VCINSTALLDIR
 
-    git checkout .bazelrc
+    # git checkout .bazelrc
+    Copy-Item '..\.bazelrc' '.bazelrc'
     echo 'try-import %workspace%/../windows_configure.bazelrc' >> .bazelrc
 
     mkdir ~/bzl_out -ErrorAction Continue

@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-cpu:
-    runs-on: windows-2019
+    runs-on: windows-2022
     env:
       AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
       BAZEL_PATH: "D:\\bazel.exe"
@@ -31,6 +31,13 @@ jobs:
         disk-root: "C:"
     - name: Show disk info
       run: Get-Volume -DriveLetter CD | Sort-Object DriveLetter
+
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\msys2
+    - shell: msys2 {0}
+      run: |
+        uname -a
 
     - uses: actions/checkout@v3
       with:
@@ -55,9 +62,10 @@ jobs:
         python-version: "3.10"
     - name: py310 pip install
       run: pip install -r "$env:GITHUB_WORKSPACE/build-requirements-py310.txt"
+    - name: copy bazel config
+      run: copy .bazelrc "$env:GITHUB_WORKSPACE/jax/"
     - name: py310 build whl and upload
       run: |
-        copy .bazelrc "$env:GITHUB_WORKSPACE/jax/"
         cd "$env:GITHUB_WORKSPACE/jax"
         dir
         ../bazel-build-cpu.ps1 -bazel_path $env:BAZEL_PATH
@@ -73,9 +81,10 @@ jobs:
         python-version: "3.9"
     - name: py39 pip install
       run: pip install -r "$env:GITHUB_WORKSPACE/build-requirements.txt"
+    - name: copy bazel config
+      run: copy .bazelrc "$env:GITHUB_WORKSPACE/jax/"
     - name: py39 build whl and upload
       run: |
-        copy .bazelrc "$env:GITHUB_WORKSPACE/jax/"
         cd "$env:GITHUB_WORKSPACE/jax"
         dir
         ../bazel-build-cpu.ps1 -bazel_path $env:BAZEL_PATH

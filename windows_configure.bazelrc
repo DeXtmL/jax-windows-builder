@@ -3,3 +3,5 @@
 #
 # https://github.com/bazelbuild/bazel/blob/535a4d44c656a43ca849e6075f01d27751a59067/tools/cpp/windows_cc_toolchain_config.bzl#L613
 build:windows --copt=/Zm100
+# startup --windows_enable_symlinks
+# build --enable_runfiles

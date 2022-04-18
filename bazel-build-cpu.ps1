@@ -7,7 +7,8 @@ param(
 $ErrorActionPreference = "Stop"
 
 # path for patch.exe and realpath.exe
-$msys2_path = "C:\msys64\usr\bin"
+# $msys2_path = "C:\msys64\usr\bin"
+$msys2_path = "D:\msys2\usr\bin"
 
 [System.Collections.ArrayList]$new_path = `
     'C:\Windows\System32', `
@@ -43,7 +44,7 @@ try {
     $env:BAZEL_VC = $env:VCINSTALLDIR
 
     # git checkout .bazelrc
-    Copy-Item '..\.bazelrc' '.bazelrc'
+    #Copy-Item '..\.bazelrc' '.bazelrc'
     echo 'try-import %workspace%/../windows_configure.bazelrc' >> .bazelrc
 
     mkdir ~/bzl_out -ErrorAction Continue

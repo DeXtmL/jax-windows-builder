@@ -32,13 +32,13 @@ jobs:
     - name: Show disk info
       run: Get-Volume -DriveLetter CD | Sort-Object DriveLetter
 
-    # - uses: msys2/setup-msys2@v2
-    #   with:
-    #     location: D:\msys2
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\msys2
     - shell: powershell
-      run: msys -c 'uname -a'
-    # - name: check msys2 install
-    #   run: dir D:\msys2
+      run: msys2 -c 'uname -a'
+    - name: check msys2 install
+      run: dir D:\msys2
 
     - uses: actions/checkout@v3
       with:

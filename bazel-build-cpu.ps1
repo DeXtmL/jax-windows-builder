@@ -7,8 +7,8 @@ param(
 $ErrorActionPreference = "Stop"
 
 # path for patch.exe and realpath.exe
-# $msys2_path = "C:\msys64\usr\bin"
-$msys2_path = "D:\msys2\usr\bin"
+$msys2_path = "C:\msys64\usr\bin"
+# $msys2_path = "D:\msys2\usr\bin"
 
 [System.Collections.ArrayList]$new_path = `
     'C:\Windows\System32', `

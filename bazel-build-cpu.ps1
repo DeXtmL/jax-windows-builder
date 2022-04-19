@@ -7,8 +7,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 # path for patch.exe and realpath.exe
-# $msys2_path = "C:\msys64\usr\bin"
-$msys2_path = "D:\msys64\usr\bin"
+$msys2_path = "C:\msys64\usr\bin"
 
 [System.Collections.ArrayList]$new_path = `
     'C:\Windows\System32', `
@@ -50,10 +49,13 @@ try {
     mkdir ~/bzl_out -ErrorAction Continue
     New-Item -Type Junction -Target (Resolve-Path ~/bzl_out) -Path D:/bzl_out -ErrorAction Continue
 
+    $pythonBinPath = "$env:pythonLocation\python.exe"
+    $env:PYTHON_BIN_PATH = $pythonBinPath
+    $msysPythonBinPath = $pythonBinPath -replace '\\', '/'
     python .\build\build.py `
         --noenable_cuda `
         --bazel_path="$bazel_path" `
-        --bazel_options="--action_env=PYTHON_BIN_PATH=$env:pythonLocation\python.exe" `
+        --bazel_options="--action_env=PYTHON_BIN_PATH=$msysPythonBinPath" `
         --bazel_startup_options="--output_user_root=D:/bzl_out"
 
     if ($LASTEXITCODE -ne 0) {

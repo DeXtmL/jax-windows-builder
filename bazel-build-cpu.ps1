@@ -45,7 +45,7 @@ try {
 
     # git checkout .bazelrc
     #Copy-Item '..\.bazelrc' '.bazelrc'
-    echo 'try-import %workspace%/../windows_configure.bazelrc' >> .bazelrc
+    # echo 'try-import %workspace%/../windows_configure.bazelrc' >> .bazelrc
 
     mkdir ~/bzl_out -ErrorAction Continue
     New-Item -Type Junction -Target (Resolve-Path ~/bzl_out) -Path D:/bzl_out -ErrorAction Continue

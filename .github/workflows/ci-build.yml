@@ -63,8 +63,8 @@ jobs:
         python-version: "3.10"
     - name: py310 pip install
       run: |
-        echo "PYTHON_BIN_PATH"
-        echo %PYTHON_BIN_PATH%
+        dir pythonLocation
+        pythonLocation\python.exe --version
         pip install -r "$env:GITHUB_WORKSPACE/build-requirements-py310.txt"
     - name: copy bazel config
       run: copy .bazelrc "$env:GITHUB_WORKSPACE/jax/"

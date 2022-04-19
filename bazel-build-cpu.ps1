@@ -53,7 +53,8 @@ try {
     python .\build\build.py `
         --noenable_cuda `
         --bazel_path="$bazel_path" `
-        --bazel_startup_options="--output_user_root=D:/bzl_out --action_env=PYTHON_BIN_PATH=$env:pythonLocation"
+        --bazel_options="--action_env=PYTHON_BIN_PATH=$env:pythonLocation\\python.exe"
+        --bazel_startup_options="--output_user_root=D:/bzl_out"
 
     if ($LASTEXITCODE -ne 0) {
         throw "last command exit with $LASTEXITCODE"

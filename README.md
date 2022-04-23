@@ -1,5 +1,24 @@
 # JAX ❤️ 🪟
 
+JAX 0.2.21 manual build steps
+
+1. Download this repo (cannot be built on cloud)
+2. make sure your windows has Developer mode turned on
+3. Install Python from official installer
+4. Install MSYS
+5. Install 7z and make sure it's on the PATH
+6. Pip install the requirements.txt
+7. Edit the build_gpu.ps1 and change paths accordingly
+8. execute the build_gpu.ps1
+9. the build WILL fail at this point. Now copy the folder under patch_compile to bzl_out folder
+10. execute the build_gpu.ps1 again. This time it definitely builds if you have done correctly so far.
+
+I don't have experience in build scrips and JAX building process, so only manual steps are provided.
+If anyone can automate all of this steps, please make PR.
+
+
+----------------------------------------------------------------
+
 alpha state...
 
 A community supported Windows build for jax.
